@@ -1,0 +1,29 @@
+!include conf/*.yml
+
+name_of_the_project: martia_template
+number_of_eels: 0
+your_email: "info@martia.es"
+
+project_name:
+  type: str
+  help: What is your project name?
+  validator: >-
+    {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+    project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    {% endif %}
+
+module_name:
+  type: str
+  help: What is your Python module name?
+
+type_of_project:
+  type: str
+  help: What is the type of your project?
+  options:
+    - "Cloud Run"
+    - "Cloud Run Functions"
+
+use_precommit:
+    type: bool
+    default: false
+    help: Do you want to use pre-commit?
